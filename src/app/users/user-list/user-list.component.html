@@ -1,5 +1,14 @@
-<mat-list role="list">
-    <mat-list-item role="listitem">Item 1</mat-list-item>
-    <mat-list-item role="listitem">Item 2</mat-list-item>
-    <mat-list-item role="listitem">Item 3</mat-list-item>
-</mat-list>
+<div class="row">
+    <mat-card *ngFor="let user of userList" class="col-md-5 offset-md-1">
+        <mat-card-header>
+            <mat-card-title>{{ user.title }} {{ user.firstName }} {{ user.lastName }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-actions>
+            <img [src]="user.picture">
+
+            <p>
+                <button mat-raised-button color="primary"> Editar </button>
+            </p>
+        </mat-card-actions>
+    </mat-card>
+</div>
