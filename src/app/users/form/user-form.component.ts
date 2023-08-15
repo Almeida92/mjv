@@ -2,6 +2,7 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { FormGroup, FormControl } from '@angular/forms';
 import { UserModel } from '../models/user.model';
 import { Router } from '@angular/router';
+import UserService from '../user.service';
 
 @Component({
     selector: 'app-user-form',
@@ -26,7 +27,7 @@ export class UserFormComponent implements OnInit, OnChanges {
         timezone: new FormControl(''),
     })
 
-    constructor(private router:Router) {}
+    constructor(private router: Router, private userService: UserService) { }
 
     ngOnInit(): void { }
 
@@ -51,5 +52,35 @@ export class UserFormComponent implements OnInit, OnChanges {
         this.router.navigate(['/user-list'])
     }
 
-    onSubmit() { }
+    onSubmit() {
+        const location = {
+            city: this.userForm.value.city,
+            country: this.userForm.value.country,
+            state: this.userForm.value.state,
+            street: this.userForm.value.street,
+            timezone: this.userForm.value.timezone,
+        }
+
+        const userUpdated = {
+            id: this.user?.id,
+            title: this.userForm.value.title,
+            firstName: this.userForm.value.firstName,
+            lastName: this.userForm.value.lastName,
+            picture: this.user?.picture,
+            gender: this.userForm.value.gender,
+            email: this.user?.email,
+            dateOfBirth: this.userForm.value.dateOfBirth,
+            phone: this.userForm.value.phone,
+            location: location
+        };
+
+        this.userService.updateUserData(userUpdated)
+            .subscribe(result => {
+                this.user = result;
+                alert('Usuário atualizao com sucesso');
+            }, err => {
+                alert('Usuário atualizao com sucesso');
+                console.log(err);
+            });
+    }
 }
