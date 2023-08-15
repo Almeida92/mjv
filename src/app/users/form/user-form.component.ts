@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { UserModel } from '../models/user.model';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-user-form',
@@ -25,6 +26,8 @@ export class UserFormComponent implements OnInit, OnChanges {
         timezone: new FormControl(''),
     })
 
+    constructor(private router:Router) {}
+
     ngOnInit(): void { }
 
     ngOnChanges(changes: SimpleChanges): void {
@@ -42,6 +45,10 @@ export class UserFormComponent implements OnInit, OnChanges {
             street: this.user?.location.street,
             timezone: this.user?.location.timezone,
         })
+    }
+
+    returnToList() {
+        this.router.navigate(['/user-list'])
     }
 
     onSubmit() { }
