@@ -4,6 +4,14 @@
     </div>
     <div class="row">
         <mat-form-field class="col-md-3">
+            <mat-label>Gênero</mat-label>
+            <select matNativeControl formControlName="title">
+                <option value="mrs">Mrs</option>
+                <option value="mr">Mr</option>
+            </select>
+        </mat-form-field>
+
+        <mat-form-field class="col-md-3">
             <mat-label>Nome</mat-label>
             <input matInput formControlName="firstName">
         </mat-form-field>
@@ -22,5 +30,51 @@
         </mat-form-field>
     </div>
 
-    <input type="submit" value="submit">
+    <div class="row">
+        <mat-form-field class="col-md-3">
+            <mat-label>Telefone</mat-label>
+            <input matInput formControlName="phone">
+        </mat-form-field>
+
+        <mat-form-field class="col-md-3">
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="dateOfBirth">
+            <mat-hint>DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field class="col-md-6">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email">
+        </mat-form-field>
+    </div>
+
+    <div class="row">
+        <h2>Endereço</h2>
+    </div>
+
+    <div class="row">
+        <mat-form-field class="col-md-3">
+            <mat-label>Pais</mat-label>
+            <input matInput formControlName="country">
+        </mat-form-field>
+
+        <mat-form-field class="col-md-3">
+            <mat-label>Cidade</mat-label>
+            <input matInput formControlName="city">
+        </mat-form-field>
+
+        <mat-form-field class="col-md-3">
+            <mat-label>Estado</mat-label>
+            <input matInput formControlName="state">
+        </mat-form-field>
+
+        <mat-form-field class="col-md-3">
+            <mat-label>Logradouro</mat-label>
+            <input matInput formControlName="street">
+        </mat-form-field>
+    </div>
+
+    <button mat-raised-button color="primary">Salvar</button>
 </form>

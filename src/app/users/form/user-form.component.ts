@@ -14,6 +14,15 @@ export class UserFormComponent implements OnInit, OnChanges {
         firstName: new FormControl(''),
         lastName: new FormControl(''),
         gender: new FormControl(''),
+        email: new FormControl({ value: '', disabled: true }),
+        title: new FormControl(''),
+        dateOfBirth: new FormControl(''),
+        phone: new FormControl(''),
+        city: new FormControl(''),
+        country: new FormControl(''),
+        state: new FormControl(''),
+        street: new FormControl(''),
+        timezone: new FormControl(''),
     })
 
     ngOnInit(): void { }
@@ -23,6 +32,15 @@ export class UserFormComponent implements OnInit, OnChanges {
             firstName: this.user?.firstName,
             lastName: this.user?.lastName,
             gender: this.user?.gender,
+            email: this.user?.email,
+            title: this.user?.title,
+            dateOfBirth: this.user?.dateOfBirth,
+            phone: this.user?.phone,
+            city: this.user?.location.city,
+            country: this.user?.location.country,
+            state: this.user?.location.state,
+            street: this.user?.location.street,
+            timezone: this.user?.location.timezone,
         })
     }
 
