@@ -7,7 +7,7 @@
             <img [src]="user.picture">
 
             <p>
-                <button mat-raised-button color="primary"> Editar
+                <button mat-raised-button color="primary" (click)="exibirUserdata(user.id)"> Editar
                     <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="edit"></mat-icon>
                 </button>
             </p>
