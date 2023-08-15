@@ -7,6 +7,7 @@ import { Observable } from 'rxjs/internal/Observable';
 })
 export default class UserService {
     url: string = 'https://dummyapi.io/data/v1/';
+    
     constructor(private http: HttpClient) { }
 
     getUserList(): Observable<any> {

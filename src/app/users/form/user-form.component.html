@@ -1,0 +1,26 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div class="row">
+        <img [src]="user?.picture" alt="">
+    </div>
+    <div class="row">
+        <mat-form-field class="col-md-3">
+            <mat-label>Nome</mat-label>
+            <input matInput formControlName="firstName">
+        </mat-form-field>
+
+        <mat-form-field class="col-md-3">
+            <mat-label>Sobrenome</mat-label>
+            <input matInput formControlName="lastName">
+        </mat-form-field>
+
+        <mat-form-field class="col-md-3">
+            <mat-label>Gênero</mat-label>
+            <select matNativeControl formControlName="gender">
+                <option value="female">Feminino</option>
+                <option value="male">Masculino</option>
+            </select>
+        </mat-form-field>
+    </div>
+
+    <input type="submit" value="submit">
+</form>
