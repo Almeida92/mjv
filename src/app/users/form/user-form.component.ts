@@ -16,7 +16,8 @@ export class UserFormComponent implements OnInit, OnChanges {
         firstName: new FormControl(''),
         lastName: new FormControl(''),
         gender: new FormControl(''),
-        email: new FormControl({ value: '', disabled: true }),
+        picture: new FormControl(''),
+        email: new FormControl(''),
         title: new FormControl(''),
         dateOfBirth: new FormControl(''),
         phone: new FormControl(''),
@@ -32,6 +33,11 @@ export class UserFormComponent implements OnInit, OnChanges {
     ngOnInit(): void { }
 
     ngOnChanges(changes: SimpleChanges): void {
+
+        if (this.user) {
+            this.userForm.controls['email'].disable()
+        }
+
         this.userForm.patchValue({
             firstName: this.user?.firstName,
             lastName: this.user?.lastName,
@@ -61,26 +67,37 @@ export class UserFormComponent implements OnInit, OnChanges {
             timezone: this.userForm.value.timezone,
         }
 
-        const userUpdated = {
+        const user = {
             id: this.user?.id,
             title: this.userForm.value.title,
             firstName: this.userForm.value.firstName,
             lastName: this.userForm.value.lastName,
-            picture: this.user?.picture,
+            picture: this.userForm.value.picture,
             gender: this.userForm.value.gender,
-            email: this.user?.email,
+            email:this.userForm.value.email,
             dateOfBirth: this.userForm.value.dateOfBirth,
             phone: this.userForm.value.phone,
             location: location
         };
 
-        this.userService.updateUserData(userUpdated)
-            .subscribe(result => {
-                this.user = result;
-                alert('Usuário atualizao com sucesso');
-            }, err => {
-                alert('Usuário atualizao com sucesso');
-                console.log(err);
-            });
+        if (this.user) {
+            this.userService.updateUserData(user)
+                .subscribe(result => {
+                    this.user = result;
+                    alert('Usuário atualizao com sucesso');
+                }, err => {
+                    alert('erro ao atualizar o usuário');
+                    console.log(err);
+                });
+        } else {
+            this.userService.createUser(user)
+                .subscribe(result => {
+                    this.user = result;
+                    alert('Usuário Adicionado com sucesso');
+                }, err => {
+                    alert('erro ao tentar adicionar o usuário');
+                    console.log(err);
+                });
+        }
     }
 }

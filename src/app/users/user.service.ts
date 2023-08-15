@@ -12,7 +12,7 @@ export default class UserService {
     constructor(private http: HttpClient) { }
 
     getUserList(): Observable<any> {
-        return this.http.get(this.url + `user`);
+        return this.http.get(this.url + `user?created=1`);
     }
 
     getUserData(id: string): Observable<any> {
@@ -21,5 +21,9 @@ export default class UserService {
 
     updateUserData(user: any): Observable<any> {
         return this.http.put(this.url + `user/${user.id}`, user);
+    }
+
+    createUser(user: any): Observable<any> {
+        return this.http.post(this.url + `user/create`, user);
     }
 }
