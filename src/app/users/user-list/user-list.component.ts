@@ -20,7 +20,11 @@ export class UserListComponent implements OnInit {
     this.updateUserList();
   }
 
-  exibirUserdata(id: string): void {
+  viewUserdata(id: string): void {
+    this.router.navigate([`/user-view/${id}`]);
+  }
+
+  editUserdata(id: string): void {
     this.router.navigate([`/user-data/${id}`]);
   }
 

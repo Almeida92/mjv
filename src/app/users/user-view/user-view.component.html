@@ -1,1 +1,56 @@
-<h1>User view</h1>
+<mat-card>
+    <div class="row">
+        <h1>{{user?.title}} {{ user?.firstName}} {{ user?.lastName}}</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <img [src]="user?.picture" alt="">
+        </div>
+        <div class="col-md-5">
+            <div class="row">
+                <b class="col-md-3">Gênero:</b>
+                <p class="col-md-3">{{ user?.gender }}</p>
+
+                <b class="col-md-3">Telefone:</b>
+                <p class="col-md-3">{{ user?.phone }}</p>
+            </div>
+            <div class="row">
+                <b class="col-md-3">Pais:</b>
+                <p class="col-md-3">{{ user?.location?.country }}</p>
+
+                <b class="col-md-3">Estado:</b>
+                <p class="col-md-3">{{ user?.location?.state }}</p>
+            </div>
+            <div class="row">
+                <b class="col-md-6">Cidade:</b>
+                <p class="col-md-6">{{ user?.location?.city }}</p>
+            </div>
+
+        </div>
+        <div class="col-md-4">
+            <div class="row">
+                <b class="col-md-2">Email:</b>
+                <p class="col-md-10">{{ user?.email }}</p>
+            </div>
+            <div class="row">
+                <b class="col-md-7">Data de nascimento:</b>
+                <p class="col-md-5">{{ user?.dateOfBirth | date }}</p>
+            </div>
+            <div class="row">
+                <b class="col-md-7">Logradouro:</b>
+                <p class="col-md-5">{{ user?.location?.street }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row row-btn" *ngIf="user">
+        <button mat-raised-button color="primary" class="col-md-3" (click)="editUserdata(user.id)"> Editar
+            <mat-icon aria-hidden="false" aria-label="Icon Editar" fontIcon="edit"></mat-icon>
+        </button>
+
+        <button mat-raised-button color="primary" class="col-md-3" (click)="returnToList()"> Voltar
+            <mat-icon>keyboard_return</mat-icon>
+        </button>
+    </div>
+</mat-card>

@@ -8,13 +8,17 @@
                 <img [src]="user.picture">
             </div>
 
-
-            <div class="row">
-                <button mat-raised-button color="primary" (click)="exibirUserdata(user.id)" class="col-md-6"> Editar
-                    <mat-icon aria-hidden="false" aria-label="Icon Editar" fontIcon="edit"></mat-icon>
+            <div class="row-btn">
+                <button mat-fab color="primary" aria-label="Icon para visualizar o Usuário"
+                    (click)="viewUserdata(user.id)">
+                    <mat-icon>visibility</mat-icon>
                 </button>
 
-                <button mat-raised-button color="primary" (click)="deleteUser(user.id)" class="col-md-6"> Apagar
+                <button mat-fab color="accent" aria-label="Icon para editar o Usuário" (click)="editUserdata(user.id)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+
+                <button mat-fab color="warn" aria-label="Icon para excluir o Usuário" (click)="deleteUser(user.id)">
                     <mat-icon>delete</mat-icon>
                 </button>
             </div>

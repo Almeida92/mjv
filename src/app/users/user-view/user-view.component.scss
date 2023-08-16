@@ -1,0 +1,24 @@
+mat-card {
+    padding: 24px;
+
+    .row {
+        img {
+            height: 200px;
+            width: 200px;
+        }
+
+        text-align: right;
+
+        b {
+            text-align: left;
+        }
+    }
+
+    .row-btn {
+        padding-top: 24px;
+
+        button {
+            margin-right: 16px;
+        }
+    }
+}
