@@ -83,7 +83,9 @@
     </div>
 
     <div class="row row-btn">
-        <button class="col-md-3" mat-raised-button color="primary">Salvar</button>
+        <button class="col-md-3" mat-raised-button color="primary" *ngIf="!user">Salvar</button>
         <button class="col-md-3" mat-raised-button color="primary" type="button" (click)="returnToList()">Voltar</button>
     </div>
 </form>
+
+<p *ngIf="isUpdated">dados atualizados.</p>

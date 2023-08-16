@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserModel } from '../models/user.model';
 import { Router } from '@angular/router';
 import UserService from '../user.service';
@@ -12,25 +12,35 @@ import UserService from '../user.service';
 export class UserFormComponent implements OnInit, OnChanges {
     @Input()
     user?: UserModel;
+    isUpdated: boolean = false;
     userForm = new FormGroup({
-        firstName: new FormControl(''),
-        lastName: new FormControl(''),
+        firstName: new FormControl('',[ Validators.minLength(3), Validators.required]),
+        lastName: new FormControl('',[ Validators.minLength(3), Validators.required]),
         gender: new FormControl(''),
         picture: new FormControl(''),
-        email: new FormControl(''),
+        email: new FormControl('', Validators.email),
         title: new FormControl(''),
         dateOfBirth: new FormControl(''),
-        phone: new FormControl(''),
-        city: new FormControl(''),
-        country: new FormControl(''),
-        state: new FormControl(''),
-        street: new FormControl(''),
+        phone: new FormControl('', [Validators.minLength(6), Validators.required]),
+        city: new FormControl('',[ Validators.minLength(3), Validators.required]),
+        country: new FormControl('',[ Validators.minLength(3), Validators.required]),
+        state: new FormControl('', [Validators.minLength(2), Validators.required]),
+        street: new FormControl('',[ Validators.minLength(3), Validators.required]),
         timezone: new FormControl(''),
     })
 
     constructor(private router: Router, private userService: UserService) { }
 
-    ngOnInit(): void { }
+    ngOnInit(): void {
+        this.userForm.valueChanges.subscribe(form => {
+            this.isUpdated = false;
+            if (this.user && this.userForm.valid && !this.userForm.pristine) {
+                this.onSubmit()
+            } else {
+                this.userForm.hasError
+            }
+        })
+    }
 
     ngOnChanges(changes: SimpleChanges): void {
 
@@ -60,6 +70,7 @@ export class UserFormComponent implements OnInit, OnChanges {
     }
 
     onSubmit() {
+
         const location = {
             city: this.userForm.value.city,
             country: this.userForm.value.country,
@@ -75,7 +86,7 @@ export class UserFormComponent implements OnInit, OnChanges {
             lastName: this.userForm.value.lastName,
             picture: this.userForm.value.picture,
             gender: this.userForm.value.gender,
-            email:this.userForm.value.email,
+            email: this.userForm.value.email,
             dateOfBirth: this.userForm.value.dateOfBirth,
             phone: this.userForm.value.phone,
             location: location
@@ -85,7 +96,7 @@ export class UserFormComponent implements OnInit, OnChanges {
             this.userService.updateUserData(user)
                 .subscribe(result => {
                     this.user = result;
-                    alert('Usuário atualizao com sucesso');
+                    this.isUpdated = true;
                 }, err => {
                     alert('erro ao atualizar o usuário');
                     console.log(err);
@@ -96,8 +107,8 @@ export class UserFormComponent implements OnInit, OnChanges {
                     this.user = result;
                     alert('Usuário Adicionado com sucesso');
                 }, err => {
-                    alert('erro ao tentar adicionar o usuário');
-                    console.log(err);
+                    alert('Erro.');
+                    console.log(err.error.data);
                 });
         }
     }

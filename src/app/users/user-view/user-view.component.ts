@@ -31,8 +31,4 @@ export class UserViewComponent implements OnInit {
   returnToList() {
     this.router.navigate(['/user-list'])
   }
-
-  editUserdata(id: string): void {
-    this.router.navigate([`/user-data/${id}`]);
-  }
 }
