@@ -15,12 +15,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UserFormComponent } from './form/user-form.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { UserViewComponent } from './user-view/user-view.component';
 
 @NgModule({
   declarations: [
     UserListComponent,
     UserDataComponent,
-    UserFormComponent
+    UserFormComponent,
+    UserViewComponent
   ],
   imports: [
     CommonModule,
