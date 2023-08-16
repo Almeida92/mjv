@@ -17,14 +17,29 @@ export class UserListComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
+    this.updateUserList();
+  }
+
+  exibirUserdata(id: string): void {
+    this.router.navigate([`/user-data/${id}`]);
+  }
+
+  deleteUser(id: string): void {
+    this.userService
+      .deleteUser(id)
+      .subscribe(result => {
+        alert('Usuário apagado com sucesso.');
+        this.updateUserList();
+      }, err => {
+        alert('Erro ao apagar usuário.');
+      })
+  }
+
+  updateUserList(): void {
     this.userService
       .getUserList()
       .subscribe((result: UserResponseModel) => {
         this.userList = result.data
       })
-  }
-
-  exibirUserdata(id: string): void {
-    this.router.navigate([`/user-data/${id}`]);
   }
 }

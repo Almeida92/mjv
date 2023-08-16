@@ -4,13 +4,21 @@
             <mat-card-title>{{ user.title }} {{ user.firstName }} {{ user.lastName }}</mat-card-title>
         </mat-card-header>
         <mat-card-actions>
-            <img [src]="user.picture">
+            <div class="row">
+                <img [src]="user.picture">
+            </div>
 
-            <p>
-                <button mat-raised-button color="primary" (click)="exibirUserdata(user.id)"> Editar
-                    <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="edit"></mat-icon>
+
+            <div class="row">
+                <button mat-raised-button color="primary" (click)="exibirUserdata(user.id)" class="col-md-6"> Editar
+                    <mat-icon aria-hidden="false" aria-label="Icon Editar" fontIcon="edit"></mat-icon>
                 </button>
-            </p>
+
+                <button mat-raised-button color="primary" (click)="deleteUser(user.id)" class="col-md-6"> Apagar
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+
         </mat-card-actions>
     </mat-card>
 </div>

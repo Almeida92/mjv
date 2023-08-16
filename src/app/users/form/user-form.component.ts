@@ -44,6 +44,7 @@ export class UserFormComponent implements OnInit, OnChanges {
             gender: this.user?.gender,
             email: this.user?.email,
             title: this.user?.title,
+            picture: this.user?.picture,
             dateOfBirth: this.user?.dateOfBirth,
             phone: this.user?.phone,
             city: this.user?.location.city,

@@ -1,7 +1,9 @@
 <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div *ngIf="user" class="row">
+        <img [src]="user.picture" alt="">
+    </div>
     <div class="row">
-        <img *ngIf="user" [src]="user.picture" alt="">
-        <mat-form-field *ngIf="!user" class="col-md-3">
+        <mat-form-field class="col-md-6" >
             <mat-label>Picture url</mat-label>
             <input matInput formControlName="picture">
         </mat-form-field>
@@ -82,6 +84,6 @@
 
     <div class="row row-btn">
         <button class="col-md-3" mat-raised-button color="primary">Salvar</button>
-        <button class="col-md-3" mat-raised-button color="primary" (click)="returnToList()">Voltar</button>
+        <button class="col-md-3" mat-raised-button color="primary" type="button" (click)="returnToList()">Voltar</button>
     </div>
 </form>
